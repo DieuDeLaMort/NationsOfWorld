@@ -24,16 +24,28 @@ class Config {
     }
 
     async getInstanceList() {
-        let urlInstance = `${url}/instances`
-        let instances = await nodeFetch(urlInstance).then(res => res.json()).catch(err => err)
-        let instancesList = []
-        instances = Object.entries(instances)
-
-        for (let [name, data] of instances) {
-            let instance = data
-            instancesList.push(instance)
-        }
-        return instancesList
+        return [
+            {
+                name: "Nations Of World - Résurgence",
+                url: `${url}/files`,
+                loader: {
+                    minecraft_version: "1.20.1",
+                    loader_type: "forge",
+                    loader_version: "47.4.0"
+                },
+                verify: true,
+                ignored: ["logs", "screenshots", "saves", "resourcepacks", "shaderpacks", "options.txt", "optionsof.txt"],
+                jvm_args: [],
+                game_args: [],
+                status: {
+                    nameserver: "Nations Of World - Résurgence",
+                    ip: "play.nationsofworld.fr",
+                    port: 25565
+                },
+                whitelistActive: false,
+                whitelist: []
+            }
+        ]
     }
 
     async getNews(config) {
