@@ -1,8 +1,8 @@
 {
-    "name": "Selvania-Launcher",
-    "preductname": "Selvania Launcher",
+    "name": "nations-of-world",
+    "preductname": "Nations Of World",
     "version": "2.2.2",
-    "description": "Launcher Mincraft pour le serveur Selvania",
+    "description": "Launcher Minecraft pour le serveur Nations Of World",
     "main": "src/app.js",
     "author": {
         "name": "luuxis, Inc.",
@@ -39,6 +39,6 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/luuxis/Selvania-Launcher.git"
+        "url": "git+https://github.com/DieuDeLaMort/NationsOfWorld.git"
     }
 }
