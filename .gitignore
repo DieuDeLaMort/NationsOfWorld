@@ -6,3 +6,7 @@ dist
 node-v*
 data
 .DS_Store
+
+# Server game files (add your own files, don't commit them)
+server/files/*
+!server/files/.gitkeep
