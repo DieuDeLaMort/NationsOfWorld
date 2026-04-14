@@ -1,0 +1,39 @@
+{
+    "maintenance": false,
+    "maintenance_message": "Le serveur est en maintenance. Revenez plus tard.",
+    "online": true,
+    "client_id": "your-microsoft-client-id-here",
+    "instances": [
+        {
+            "name": "Nations Of World - Résurgence",
+            "loader": {
+                "minecraft_version": "1.20.1",
+                "loader_type": "forge",
+                "loader_version": "47.4.0"
+            },
+            "verify": true,
+            "ignored": [
+                "logs",
+                "screenshots",
+                "saves",
+                "resourcepacks",
+                "shaderpacks",
+                "options.txt",
+                "optionsof.txt"
+            ],
+            "jvm_args": [],
+            "game_args": [],
+            "status": {
+                "nameserver": "Nations Of World - Résurgence",
+                "ip": "play.nationsofworld.fr",
+                "port": 25565
+            },
+            "whitelistActive": false,
+            "whitelist": []
+        }
+    ],
+    "server": {
+        "port": 3000,
+        "host": "0.0.0.0"
+    }
+}
