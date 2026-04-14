@@ -62,8 +62,8 @@ pm2 startup
   "game_args": [],
   "status": {
     "nameserver": "Nom du serveur",
-    "ip": "play.votreserveur.fr",
-    "port": 25565
+    "ip": "163.5.59.154",
+    "port": 27015
   },
   "whitelistActive": false,
   "whitelist": []
@@ -75,7 +75,7 @@ pm2 startup
 Dans le fichier `package.json` du launcher, remplacez l'URL par celle de votre serveur :
 
 ```json
-"url": "http://VOTRE_IP_OU_DOMAINE:3000"
+"url": "http://163.5.59.154:3000"
 ```
 
 ### Routes API
@@ -125,5 +125,5 @@ pm2 startup
 In the launcher's `package.json`, change the URL to point at your server:
 
 ```json
-"url": "http://YOUR_IP_OR_DOMAIN:3000"
+"url": "http://163.5.59.154:3000"
 ```

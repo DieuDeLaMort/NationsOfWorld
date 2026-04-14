@@ -159,6 +159,7 @@ function handleConfig(req, res) {
         maintenance_message: cfg.maintenance_message || '',
         online: cfg.online !== undefined ? cfg.online : true,
         client_id: cfg.client_id || '',
+        dataDirectory: cfg.dataDirectory || 'NationsOfWorld',
         instances,
     });
 }

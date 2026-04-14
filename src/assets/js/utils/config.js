@@ -6,17 +6,17 @@
 const pkg = require('../package.json');
 const nodeFetch = require("node-fetch");
 const convert = require('xml-js');
-let url = pkg.user ? `${pkg.url}/${pkg.user}` : pkg.url
 
-let config = `${url}/config`;
-let articles = `${url}/articles`;
+const baseUrl = pkg.url;
+const configUrl   = `${baseUrl}/config`;
+const articlesUrl = `${baseUrl}/articles`;
 
 class Config {
     GetConfig() {
         return new Promise((resolve, reject) => {
-            nodeFetch(config).then(async config => {
-                if (config.status === 200) return resolve(config.json());
-                else return reject({ error: { code: config.statusText, message: 'server not accessible' } });
+            nodeFetch(configUrl).then(async res => {
+                if (res.status === 200) return resolve(res.json());
+                else return reject({ error: { code: res.statusText, message: 'server not accessible' } });
             }).catch(error => {
                 return reject({ error });
             })
@@ -24,37 +24,19 @@ class Config {
     }
 
     async getInstanceList() {
-        return [
-            {
-                name: "Nations Of World - Résurgence",
-                url: `${url}/files`,
-                loader: {
-                    minecraft_version: "1.20.1",
-                    loader_type: "forge",
-                    loader_version: "47.4.0"
-                },
-                verify: true,
-                ignored: ["logs", "screenshots", "saves", "resourcepacks", "shaderpacks", "options.txt", "optionsof.txt"],
-                jvm_args: [],
-                game_args: [],
-                status: {
-                    nameserver: "Nations Of World - Résurgence",
-                    ip: "play.nationsofworld.fr",
-                    port: 25565
-                },
-                whitelistActive: false,
-                whitelist: []
-            }
-        ]
+        return this.GetConfig().then(cfg => cfg.instances || []).catch(err => {
+            console.error('[Config] Failed to fetch instance list:', err);
+            return [];
+        });
     }
 
     async getNews(config) {
         if (config.rss) {
             return new Promise((resolve, reject) => {
-                nodeFetch(config.rss).then(async config => {
-                    if (config.status === 200) {
+                nodeFetch(config.rss).then(async res => {
+                    if (res.status === 200) {
                         let news = [];
-                        let response = await config.text()
+                        let response = await res.text()
                         response = (JSON.parse(convert.xml2json(response, { compact: true })))?.rss?.channel?.item;
 
                         if (!Array.isArray(response)) response = [response];
@@ -68,14 +50,14 @@ class Config {
                         }
                         return resolve(news);
                     }
-                    else return reject({ error: { code: config.statusText, message: 'server not accessible' } });
+                    else return reject({ error: { code: res.statusText, message: 'server not accessible' } });
                 }).catch(error => reject({ error }))
             })
         } else {
             return new Promise((resolve, reject) => {
-                nodeFetch(articles).then(async config => {
-                    if (config.status === 200) return resolve(config.json());
-                    else return reject({ error: { code: config.statusText, message: 'server not accessible' } });
+                nodeFetch(articlesUrl).then(async res => {
+                    if (res.status === 200) return resolve(res.json());
+                    else return reject({ error: { code: res.statusText, message: 'server not accessible' } });
                 }).catch(error => {
                     return reject({ error });
                 })
